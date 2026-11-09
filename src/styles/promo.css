@@ -462,3 +462,10 @@
     gap: 20px;
   }
 }
+
+/* No celular e no tablet, o plano recomendado (Avançado) aparece primeiro */
+@media (max-width: 959px) {
+  .plans-grid .plan-card--featured {
+    order: -1;
+  }
+}
