@@ -7,13 +7,11 @@ import '@fontsource/inter/latin-700.css';
 import '@fontsource/sora/latin-500.css';
 import '@fontsource/sora/latin-600.css';
 import '@fontsource/sora/latin-700.css';
-import './styles/tokens.css';
-import './styles/base.css';
-import './styles/components.css';
-import './styles/layout.css';
+import './styles/site.css';
 import './styles/promo.css';
 import App from './App.jsx';
 import { isContactConfigured } from './config/site.js';
+import { initTracking } from './lib/tracking.js';
 
 // Marca cedo que haverá animação, para os títulos não piscarem antes de animar.
 if (window.matchMedia?.('(prefers-reduced-motion: no-preference)').matches) {
@@ -26,6 +24,8 @@ if (import.meta.env.DEV && !isContactConfigured()) {
     '[CliCar app] CONTACT.url não configurado em src/config/site.js: botões de contato apontam para #demonstracao.',
   );
 }
+
+initTracking();
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>

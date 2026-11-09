@@ -80,15 +80,15 @@ function revealBlocks() {
     const mode = el.dataset.reveal;
     if (mode === 'flip') {
       gsap.from(el.children, {
-        rotateX: -28,
-        y: 80,
+        rotateX: -10,
+        y: 36,
         autoAlpha: 0,
         transformOrigin: '50% 0%',
         transformPerspective: 1000,
-        duration: 1.1,
-        ease: 'power4.out',
-        stagger: 0.12,
-        scrollTrigger: { trigger: el, start: 'top 95%', once: true },
+        duration: 0.75,
+        ease: 'power3.out',
+        stagger: 0.08,
+        scrollTrigger: { trigger: el, start: 'top 92%', once: true },
       });
       return;
     }
@@ -131,38 +131,22 @@ function counters() {
   });
 }
 
-/** Abertura: entrada em sequência, notebook que se endireita com a rolagem e cartões com paralaxe. */
+/** Abertura: entrada em sequência e cartões flutuantes com paralaxe (rolagem e mouse). */
 function hero() {
-  const root = document.querySelector('.hero2');
+  const root = document.querySelector('.hero4');
   if (!root) return;
   const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
-  tl.from('.hero2__badge', { y: 16, autoAlpha: 0, duration: 0.6 })
-    .from(
-      '.hero2__lead, .hero2__actions, .hero2__segments',
-      { y: 20, autoAlpha: 0, duration: 0.7, stagger: 0.1 },
-      0.55,
-    )
-    .from('.laptop', { y: 120, autoAlpha: 0, duration: 1.2 }, 0.6)
-    .from('.hero2__phone', { x: 80, autoAlpha: 0, duration: 1 }, 0.9)
-    .from(
-      '.glass-card',
-      { scale: 0.6, autoAlpha: 0, duration: 0.7, stagger: 0.12, ease: 'back.out(1.8)' },
-      1.1,
-    );
+  tl.from(
+    '.hero4__lead, .hero4__countdown, .hero4__actions, .hero4__terms',
+    { y: 20, autoAlpha: 0, duration: 0.7, stagger: 0.1 },
+    0.15,
+  )
+    .from('.hero4__stage', { y: 70, autoAlpha: 0, duration: 0.9 }, 0.25)
+    .from('.hcard', { scale: 0.7, autoAlpha: 0, duration: 0.7, stagger: 0.1, ease: 'back.out(1.6)' }, 0.25);
 
-  gsap.fromTo(
-    '.laptop',
-    { rotateX: 22, scale: 0.92 },
-    {
-      rotateX: 0,
-      scale: 1,
-      ease: 'none',
-      scrollTrigger: { trigger: '.hero2__stage', start: 'top 95%', end: 'top 25%', scrub: true },
-    },
-  );
-  gsap.utils.toArray('.glass-card').forEach((card, i) => {
+  gsap.utils.toArray('.hcard').forEach((card, i) => {
     gsap.to(card, {
-      yPercent: -40 - i * 25,
+      yPercent: -16 - (i % 3) * 10,
       ease: 'none',
       scrollTrigger: { trigger: root, start: 'top top', end: 'bottom top', scrub: true },
     });
@@ -170,8 +154,7 @@ function hero() {
 
   // Paralaxe leve com o mouse (somente mouse/trackpad).
   if (window.matchMedia('(pointer: fine)').matches) {
-    const stage = root.querySelector('.hero2__stage');
-    const movers = gsap.utils.toArray('.glass-card, .hero2__phone').map((el, i) => ({
+    const movers = gsap.utils.toArray('.hcard').map((el, i) => ({
       x: gsap.quickTo(el, 'x', { duration: 0.8, ease: 'power3' }),
       y: gsap.quickTo(el, 'y', { duration: 0.8, ease: 'power3' }),
       depth: 10 + (i % 3) * 8,
@@ -186,7 +169,6 @@ function hero() {
       });
     };
     on(root, 'pointermove', onMove);
-    stage && gsap.set(stage, { perspective: 1200 });
   }
 }
 
@@ -395,8 +377,8 @@ function magnetic() {
     const y = gsap.quickTo(el, 'y', { duration: 0.4, ease: 'power3' });
     on(el, 'pointermove', (e) => {
       const r = el.getBoundingClientRect();
-      x((e.clientX - r.left - r.width / 2) * 0.25);
-      y((e.clientY - r.top - r.height / 2) * 0.35);
+      x((e.clientX - r.left - r.width / 2) * 0.1);
+      y((e.clientY - r.top - r.height / 2) * 0.12);
     });
     on(el, 'pointerleave', () => {
       x(0);

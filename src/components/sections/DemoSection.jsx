@@ -3,8 +3,7 @@ import { ArrowRight, CheckCircle2, Mail, MessageCircle } from 'lucide-react';
 import { COMPANY, FORM, SITE, isFormConfigured } from '../../config/site.js';
 import { plans } from '../../data/plans.js';
 import { PROMO } from '../../config/promo.js';
-import { Eyebrow, Hl } from '../ui/SectionHeading.jsx';
-import symbolOrange from '../../assets/brand/clicar-simbolo-positivo.svg';
+import { Hl } from '../ui/SectionHeading.jsx';
 import { Brand } from '../ui/Brand.jsx';
 
 const POINTS = [
@@ -125,7 +124,6 @@ export function DemoSection() {
       <div className="glow glow--left" aria-hidden="true" />
       <div className="container demo__grid">
         <div className="demo__copy">
-          <Eyebrow>Demonstração</Eyebrow>
           <h2 id="demo-title" className="demo__title" data-split>
             Veja a sua oficina <Hl>a um clique</Hl> de tudo.
           </h2>
@@ -141,7 +139,6 @@ export function DemoSection() {
               </li>
             ))}
           </ol>
-          <img className="demo__symbol" src={symbolOrange} alt="" width="64" height="72" />
         </div>
 
         <div className="demo-card" data-reveal>

@@ -62,7 +62,6 @@ export function SegmentsSection() {
         <SectionHeading
           id="segmentos-title"
           layout="split"
-          eyebrow="Para quem é"
           title={
             <>
               Feito para quem <Hl>vive de carro.</Hl>

@@ -11,7 +11,6 @@ export function StartSection() {
         <SectionHeading
           id="comeco-title"
           layout="split"
-          eyebrow="Na prática"
           title={
             <>
               “E por onde <span className="soft">eu</span> <Hl>começo?”</Hl>

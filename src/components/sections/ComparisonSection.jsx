@@ -2,21 +2,7 @@ import { Info } from 'lucide-react';
 import { AVAILABILITY_NOTE } from '../../data/plans.js';
 import { ComparisonMobile } from '../plans/ComparisonMobile.jsx';
 import { ComparisonTable } from '../plans/ComparisonTable.jsx';
-import { InclusionMark } from '../plans/InclusionMark.jsx';
 import { Hl, SectionHeading } from '../ui/SectionHeading.jsx';
-
-function Legend() {
-  return (
-    <ul className="legend" aria-label="Legenda">
-      <li>
-        <InclusionMark state="included" /> <span>Incluído</span>
-      </li>
-      <li>
-        <InclusionMark state="off" /> <span>Não incluído</span>
-      </li>
-    </ul>
-  );
-}
 
 export function ComparisonSection() {
   return (
@@ -24,7 +10,6 @@ export function ComparisonSection() {
       <div className="container">
         <SectionHeading
           id="comparar-title"
-          eyebrow="Comparar recursos"
           layout="split"
           title={
             <>
@@ -33,10 +18,6 @@ export function ComparisonSection() {
           }
           description="As principais funcionalidades lado a lado. Cada plano inclui tudo do anterior."
         />
-
-        <div className="compare-toolbar">
-          <Legend />
-        </div>
 
         <div className="compare-desktop">
           <ComparisonTable />

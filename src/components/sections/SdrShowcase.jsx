@@ -1,11 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
-import { CalendarCheck, ListChecks, MessageCircle, RotateCcw, UserRoundCheck } from 'lucide-react';
+import { Clock, Infinity as InfinityIcon, RotateCcw, TrendingUp, Users } from 'lucide-react';
 import { featureGroups, SDR_LEVEL } from '../../data/plans.js';
 import { planByLevel } from '../../lib/plans.js';
-import ana640 from '../../assets/ia/ana-robo-640.webp';
-import ana320 from '../../assets/ia/ana-robo-320.webp';
 import symbol from '../../assets/brand/clicar-simbolo-positivo.svg';
 import qrAgendamento from '../../assets/ia/qr-agendamento.svg';
+import phoneFrame from '../../assets/ia/phone-frame.png';
 
 const whatsapp = featureGroups.find((g) => g.id === 'whatsapp');
 const integrated = whatsapp.subgroups.find((s) => s.id === 'whatsapp-integrado');
@@ -77,30 +76,12 @@ const RESULTS = [
   { value: '10+', label: 'atendimentos simultâneos' },
   { value: '−78%', label: 'de clientes perdidos' },
 ];
+/** Benefícios em selos flutuando ao redor do celular. */
 const BENEFITS = [
-  'Disponível 24/7',
-  'Sem aumentar equipe',
-  'Atendimento sem interrupções',
-  'Mais clientes, menos custos',
-];
-
-const STEPS = [
-  {
-    icon: MessageCircle,
-    title: 'Responde na hora',
-    text: 'Com as instruções e a base de conhecimento que você configurou.',
-  },
-  {
-    icon: ListChecks,
-    title: 'Entende e qualifica',
-    text: 'Coleta as informações do cliente e qualifica o contato.',
-  },
-  {
-    icon: UserRoundCheck,
-    title: 'Segue suas regras',
-    text: 'Respeita as regras comerciais e de agendamento.',
-  },
-  { icon: CalendarCheck, title: 'Agenda o serviço', text: 'Confirma o horário sem intervenção humana.' },
+  { icon: Clock, label: 'Disponível 24/7' },
+  { icon: Users, label: 'Sem aumentar equipe' },
+  { icon: InfinityIcon, label: 'Atendimento sem interrupções' },
+  { icon: TrendingUp, label: 'Mais clientes, menos custos' },
 ];
 
 function useChat(length) {
@@ -163,105 +144,85 @@ export function SdrShowcase() {
 
   return (
     <section id="ia-sdr" className="section sdr on-dark" aria-labelledby="sdr-title">
-      <div className="container sdr__grid">
-        <div className="sdr__copy">
-          <img
-            className="sdr__robot"
-            src={ana640}
-            srcSet={`${ana320} 320w, ${ana640} 640w`}
-            sizes="(max-width: 999px) 160px, 200px"
-            alt="Ana, a assistente de IA do CliCar app: robô com fone de ouvido e um tablet com ícone de conversa"
-            width="640"
-            height="640"
-            loading="lazy"
-          />
-          <p className="eyebrow label">
-            <span className="eyebrow__dot" aria-hidden="true" />
-            IA no WhatsApp · {sdrPlan.name}
-          </p>
+      <div className="container sdr__top">
+        <div className="sdr__intro">
           <h2 id="sdr-title" className="sdr__title" data-split>
             IA que atende e <span className="hl">agenda sozinha.</span>
           </h2>
           <p className="sdr__lead">
-            Para quem quer automatizar o atendimento: a IA SDR conversa com o cliente, entende o que ele
-            precisa, segue as regras da oficina e agenda o serviço sem intervenção humana.
+            A IA SDR conversa com o cliente, segue as regras da oficina e agenda o serviço — sem intervenção
+            humana.
           </p>
-          <ul className="tick-list sdr__ticks">
-            {STEPS.map(({ title, text }) => (
-              <li key={title}>
-                <strong>{title}.</strong> {text}
-              </li>
-            ))}
-          </ul>
           <div className="sdr__actions">
-            <a className="btn btn--ghost btn--md" href={`#${sdrPlan.id}`}>
+            <a className="btn btn--primary btn--md" href={`#${sdrPlan.id}`}>
               Ver o {sdrPlan.name}
             </a>
           </div>
         </div>
 
-        <figure className="sdr-phone" ref={ref}>
-          <div className="phone">
-            <div className="phone__head">
-              <span className="phone__avatar">
-                <img src={symbol} alt="" width="16" height="18" />
-              </span>
-              <div>
-                <strong>Carlos Souza</strong>
-                <small>{typing ? 'digitando…' : 'online'}</small>
+        <div className="sdr-stage">
+          <figure className="sdr-phone" ref={ref}>
+            <div className="phone-device">
+              <img className="phone-device__frame" src={phoneFrame} alt="" aria-hidden="true" />
+              <div className="phone-screen">
+                <div className="phone__head">
+                  <span className="phone__avatar">
+                    <img src={symbol} alt="" width="16" height="18" />
+                  </span>
+                  <div>
+                    <strong>Carlos Souza</strong>
+                    <small>{typing ? 'digitando…' : 'online'}</small>
+                  </div>
+                  <span className="phone__badge">IA ativa</span>
+                </div>
+                <div className="phone__chat" aria-live="polite">
+                  {SCRIPT.slice(0, shown).map((m, i) =>
+                    m.from === 'card' ? (
+                      <ConfirmationMessage key={i} />
+                    ) : (
+                      <p key={i} className={`bubble bubble--${m.from} pop`}>
+                        <span className="sr-only">{m.from === 'in' ? 'Cliente: ' : 'IA: '}</span>
+                        {m.text}
+                      </p>
+                    ),
+                  )}
+                  {typing && (
+                    <p className="typing" aria-hidden="true">
+                      <span />
+                      <span />
+                      <span />
+                    </p>
+                  )}
+                </div>
               </div>
-              <span className="phone__badge">IA ativa</span>
             </div>
-            <div className="phone__chat" aria-live="polite">
-              {SCRIPT.slice(0, shown).map((m, i) =>
-                m.from === 'card' ? (
-                  <ConfirmationMessage key={i} />
-                ) : (
-                  <p key={i} className={`bubble bubble--${m.from} pop`}>
-                    <span className="sr-only">{m.from === 'in' ? 'Cliente: ' : 'IA: '}</span>
-                    {m.text}
-                  </p>
-                ),
+            <figcaption className="sdr-phone__caption">
+              <span>Conversa ilustrativa</span>
+              {done && (
+                <button type="button" className="text-btn" onClick={replay}>
+                  <RotateCcw size={14} aria-hidden="true" /> Ver de novo
+                </button>
               )}
-              {typing && (
-                <p className="typing" aria-hidden="true">
-                  <span />
-                  <span />
-                  <span />
-                </p>
-              )}
+            </figcaption>
+          </figure>
+          {RESULTS.map((r, i) => (
+            <div key={r.label} className={`sdr-float sdr-float--${i + 1}`}>
+              <strong data-count>{r.value}</strong>
+              <span>{r.label}</span>
             </div>
-          </div>
-          <figcaption className="sdr-phone__caption">
-            <span>Conversa ilustrativa</span>
-            {done && (
-              <button type="button" className="text-btn" onClick={replay}>
-                <RotateCcw size={14} aria-hidden="true" /> Ver de novo
-              </button>
-            )}
-          </figcaption>
-        </figure>
+          ))}
+          {BENEFITS.map(({ icon: Icon, label }, i) => (
+            <span key={label} className={`sdr-chip-float sdr-chip-float--${i + 1}`}>
+              <Icon size={14} aria-hidden="true" /> {label}
+            </span>
+          ))}
+        </div>
       </div>
 
       <div className="container">
-        <div className="sdr-results">
-          <ul className="sdr-results__stats" aria-label="Resultados do agente">
-            {RESULTS.map((r) => (
-              <li key={r.label}>
-                <strong data-count>{r.value}</strong>
-                <span>{r.label}</span>
-              </li>
-            ))}
-          </ul>
-          <ul className="sdr-results__benefits" aria-label="Benefícios">
-            {BENEFITS.map((b) => (
-              <li key={b}>{b}</li>
-            ))}
-          </ul>
-        </div>
         <div className="sdr-compare" data-reveal="stagger">
           <div className="sdr-compare__col">
-            <p className="label">Planos 1, 2, 3 e 4</p>
+            <p className="label">Todos os planos</p>
             <h3>{integrated.label}</h3>
             <p className="sdr-compare__who">Sua equipe atende as conversas</p>
             <ul className="tick-list">

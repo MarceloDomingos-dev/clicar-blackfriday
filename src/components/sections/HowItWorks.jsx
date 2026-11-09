@@ -1,4 +1,3 @@
-import { ArrowRight } from 'lucide-react';
 import { TrialButton } from '../ui/TrialButton.jsx';
 import { ApprovalVisual, BankVisual, ChecklistVisual } from '../illustrations/Mocks.jsx';
 import { Hl, SectionHeading } from '../ui/SectionHeading.jsx';
@@ -33,7 +32,6 @@ export function HowItWorks() {
         <SectionHeading
           id="como-title"
           layout="split"
-          eyebrow="Como funciona"
           title={
             <>
               Orçar, aprovar <span className="soft">e</span> <Hl>receber.</Hl>
@@ -51,7 +49,6 @@ export function HowItWorks() {
             <li key={tag} className="how-card" data-tilt>
               <div className="how-card__top">
                 <span className="how-card__n">{String(i + 1).padStart(2, '0')}.</span>
-                <span className="how-card__tag">{tag}</span>
               </div>
               <p className="how-card__big" aria-hidden="true">
                 {tag}
@@ -64,8 +61,12 @@ export function HowItWorks() {
             </li>
           ))}
         </ol>
-        <div className="center-cta">
-          <TrialButton size="lg" icon={ArrowRight} />
+        <div className="how-cta">
+          <div className="how-cta__text">
+            <p className="how-cta__title">Quer ver na sua oficina?</p>
+            <p className="how-cta__sub">Conecte seu WhatsApp e teste por 7 dias sem custo</p>
+          </div>
+          <TrialButton className="how-cta__btn">Comece agora mesmo</TrialButton>
         </div>
       </div>
     </section>

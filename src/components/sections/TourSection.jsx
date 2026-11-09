@@ -77,7 +77,7 @@ const TABS = [
   },
 ];
 
-const DURATION = 6; // segundos por tela no modo automático
+const DURATION = 3.5; // segundos por tela no modo automático
 
 export function TourSection() {
   const [current, setCurrent] = useState(0);
@@ -154,13 +154,11 @@ export function TourSection() {
         <SectionHeading
           id="tour-title"
           align="center"
-          eyebrow="Por dentro"
           title={
             <>
               Veja o <Brand /> <Hl>funcionando.</Hl>
             </>
           }
-          description="Um passeio pelas telas do sistema."
         />
         <div className="tour__bar">
           <button
@@ -192,21 +190,25 @@ export function TourSection() {
                 className="tour__tab"
                 onClick={() => select(i)}
               >
-                {t.label}
-                {i === current && playing && (
+                {i === current && (
                   <span
                     key={`p-${current}`}
                     className="tour__progress"
                     aria-hidden="true"
-                    style={{
-                      animationDuration: `${DURATION}s`,
-                      animationPlayState: running ? 'running' : 'paused',
-                    }}
+                    style={
+                      playing
+                        ? {
+                            animationDuration: `${DURATION}s`,
+                            animationPlayState: running ? 'running' : 'paused',
+                          }
+                        : undefined
+                    }
                     onAnimationEnd={() => {
                       if (running) select((current + 1) % TABS.length, { stop: false });
                     }}
                   />
                 )}
+                <span className="tour__tab-label">{t.label}</span>
               </button>
             ))}
           </div>
@@ -222,9 +224,6 @@ export function TourSection() {
             onPointerLeave={() => setHover(false)}
           >
             <div className="tour__copy">
-              <p className="tour__count" aria-hidden="true">
-                {String(current + 1).padStart(2, '0')} / {String(TABS.length).padStart(2, '0')}
-              </p>
               <h3 className="tour__title">{tab.title}</h3>
               <p className="tour__text">{tab.text}</p>
             </div>
@@ -237,12 +236,7 @@ export function TourSection() {
                   <Brand /> app · {tab.label}
                 </em>
               </div>
-              <div
-                className="shot__viewport"
-                role="region"
-                tabIndex={0}
-                aria-label={`Tela: ${tab.label} (role para o lado para ver a tela inteira)`}
-              >
+              <div className="shot__viewport">
                 <img
                   key={tab.id}
                   src={tab.img.src}
@@ -257,9 +251,6 @@ export function TourSection() {
                   onLoad={() => setLoaded((l) => ({ ...l, [tab.id]: true }))}
                 />
               </div>
-              <p className="shot__hint" aria-hidden="true">
-                Arraste para o lado para ver a tela inteira
-              </p>
             </figure>
           </div>
         </div>

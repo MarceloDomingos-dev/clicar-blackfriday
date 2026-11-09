@@ -59,7 +59,7 @@ export const FORM = {
  * Enquanto estiver vazio, o botão aparece, mas só avisa que o acesso estará disponível em breve.
  */
 export const LOGIN = {
-  url: '',
+  url: 'https://appclicar.com.br/auth',
 };
 
 /**
@@ -69,7 +69,15 @@ export const LOGIN = {
  * Enquanto estiver vazio, o botão leva ao formulário no fim da página (#demonstracao).
  */
 export const SIGNUP = {
-  url: '',
+  url: 'https://appclicar.com.br/cadastro',
+};
+
+/**
+ * Google Ads: conversão disparada no clique dos botões de cadastro (mesma tag do site no ar).
+ * A tag em si fica no index.html.
+ */
+export const TRACKING = {
+  signupConversion: 'AW-18531398933/vx-nCKLR1rEdEJXquoRF',
 };
 
 export function getSignupLink() {
