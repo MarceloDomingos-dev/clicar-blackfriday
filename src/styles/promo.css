@@ -90,30 +90,9 @@
 }
 
 /* Abertura (cartão branco do site, com a Black Friday) */
-.hero4--bf {
-  background: var(--black);
-}
 .hero4--bf .hero4__card {
   height: auto;
   min-height: calc(100svh - var(--header-h) - 40px);
-  border-color: #262626;
-  background: linear-gradient(180deg, #161616, #0b0b0b);
-  box-shadow: 0 30px 80px -40px rgba(245, 90, 0, 0.35);
-}
-.hero4--bf .hero4__dots {
-  background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1.5px);
-}
-.hero4--bf .hero4__line1 {
-  color: var(--white);
-}
-.hero4--bf .hero4__line1 .brand-word__cli {
-  color: var(--white);
-}
-.hero4--bf .hero4__line2 {
-  color: var(--gray-light);
-}
-.hero4--bf .hero4__lead {
-  color: var(--dark-muted);
 }
 .hero4__badge {
   display: inline-flex;
@@ -148,21 +127,13 @@
   text-transform: uppercase;
 }
 .hero4--bf .hero4__lead strong {
-  color: var(--white);
-}
-.hero4--bf .hero4__badge {
-  border: 1px solid var(--orange-line);
-  background: rgba(245, 90, 0, 0.1);
+  color: var(--black);
 }
 .hero4__countdown {
   margin-top: clamp(18px, 2.2vw, 26px);
   padding: 14px 16px 16px;
   border-radius: var(--radius-lg);
   background: var(--black);
-}
-.hero4--bf .hero4__countdown {
-  border: 1px solid #262626;
-  background: #111;
 }
 .hero4__countdown-label,
 .plans__bf-label {

@@ -14,7 +14,7 @@ const painel = shot('07-painel-graficos');
  */
 export function Hero() {
   return (
-    <section className="hero4 hero4--bf on-dark" aria-label="Black Friday CliCar app">
+    <section className="hero4 hero4--bf" aria-label="Black Friday CliCar app">
       <div className="hero4__card">
         <span className="hero4__dots" aria-hidden="true" />
 

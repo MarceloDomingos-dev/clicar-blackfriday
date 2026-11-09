@@ -18,18 +18,18 @@ const NAV = [
 export function Header() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [dark, setDark] = useState(true);
+  const [dark, setDark] = useState(false);
   const toggleRef = useRef(null);
   const headerRef = useRef(null);
 
-  // O cabeçalho fica escuro sobre as seções escuras (abertura, IA SDR, rodapé) e claro nas demais.
+  // O cabeçalho fica escuro sobre as seções escuras (IA SDR, rodapé) e claro nas demais.
   useEffect(() => {
     const onScroll = () => {
       setScrolled(window.scrollY > 8);
       const h = headerRef.current?.getBoundingClientRect().bottom ?? 0;
       const below = document.elementFromPoint(window.innerWidth / 2, h + 2);
       const section = below?.closest('main > section, main > div, footer');
-      setDark(Boolean(section?.matches('.on-dark, .hero4--bf, footer')));
+      setDark(Boolean(section?.matches('.on-dark, footer')));
     };
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
