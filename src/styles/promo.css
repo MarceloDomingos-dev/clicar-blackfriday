@@ -89,28 +89,82 @@
   font-weight: 700;
 }
 
-/* Abertura em preto */
-.hero2--bf {
+/* Abertura (cartão branco do site, com a Black Friday) */
+.hero4--bf {
+  background: var(--black);
+}
+.hero4--bf .hero4__card {
+  height: auto;
+  min-height: calc(100svh - var(--header-h) - 40px);
+  border-color: #262626;
+  background: linear-gradient(180deg, #161616, #0b0b0b);
+  box-shadow: 0 30px 80px -40px rgba(245, 90, 0, 0.35);
+}
+.hero4--bf .hero4__dots {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1.5px);
+}
+.hero4--bf .hero4__line1 {
   color: var(--white);
 }
-.hero2--bf .hero2__line1 {
+.hero4--bf .hero4__line1 .brand-word__cli {
   color: var(--white);
 }
-.hero2--bf .hero2__line2 {
+.hero4--bf .hero4__line2 {
+  color: var(--gray-light);
+}
+.hero4--bf .hero4__lead {
+  color: var(--dark-muted);
+}
+.hero4__badge {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px 10px;
+  padding: 6px 14px 6px 6px;
+  border-radius: var(--radius-pill);
+  background: var(--black);
+  color: var(--white);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+}
+.hero4__badge > span:last-child {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.hero4__badge svg {
+  color: var(--orange);
+}
+.hero4__badge-tag {
+  padding: 4px 12px;
+  border-radius: var(--radius-pill);
+  background: var(--orange);
+  color: var(--white);
+  font-family: var(--font-display);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+}
+.hero4--bf .hero4__lead strong {
   color: var(--white);
 }
-.hero2--bf .hero2__badge {
-  color: var(--white);
-  border-color: var(--orange-line);
-  background: rgba(245, 90, 0, 0.12);
+.hero4--bf .hero4__badge {
+  border: 1px solid var(--orange-line);
+  background: rgba(245, 90, 0, 0.1);
 }
-.hero2--bf .hero2__lead strong {
-  color: var(--white);
+.hero4__countdown {
+  margin-top: clamp(18px, 2.2vw, 26px);
+  padding: 14px 16px 16px;
+  border-radius: var(--radius-lg);
+  background: var(--black);
 }
-.hero2__countdown {
-  margin-top: 28px;
+.hero4--bf .hero4__countdown {
+  border: 1px solid #262626;
+  background: #111;
 }
-.hero2__countdown-label,
+.hero4__countdown-label,
 .plans__bf-label {
   display: block;
   margin-bottom: 10px;
@@ -120,11 +174,19 @@
   text-transform: uppercase;
   color: #ff7a26;
 }
-.hero2--bf .hero2__actions {
+.hero4--bf .hero4__actions {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 12px;
+}
+@media (max-width: 480px) {
+  .hero4__countdown .bf-countdown {
+    gap: 6px;
+  }
+  .hero4__countdown .bf-countdown__unit {
+    min-width: 58px;
+  }
 }
 
 /* Regras da promoção */
@@ -169,20 +231,6 @@
   margin-top: 2px;
   color: var(--orange);
 }
-.hero2__terms {
-  margin-top: 28px;
-}
-.hero2__terms .bf-terms__item {
-  border-color: var(--glass-line);
-  background: var(--glass);
-}
-.hero2__terms .bf-terms__item > span {
-  color: var(--dark-muted);
-}
-.hero2__terms .bf-terms__item strong {
-  color: var(--white);
-}
-
 /* Planos */
 .plans__bf {
   display: flex;
@@ -284,9 +332,6 @@
 .bf-bar * {
   text-decoration: none;
 }
-.hero2--bf .brand-word__cli {
-  color: var(--white);
-}
 
 /* Chave Anual / Mensal dos planos */
 .billing-toggle {
@@ -343,4 +388,49 @@
 .plan-card__promo {
   align-items: center;
   text-align: center;
+}
+
+/* Topo escuro: o cabeçalho acompanha a cor da parte da página que está embaixo dele */
+.site-header.site-header--dark {
+  background: rgba(11, 11, 11, 0.94);
+}
+.site-header--dark.is-scrolled {
+  border-bottom-color: #262626;
+  box-shadow: 0 10px 30px -20px rgba(0, 0, 0, 0.8);
+}
+.site-header--dark .site-nav__link {
+  color: #d6d6d6;
+}
+.site-header--dark .site-nav__link:hover {
+  color: var(--white);
+  background: rgba(255, 255, 255, 0.08);
+}
+.site-header.site-header--dark .login-btn {
+  color: var(--white);
+  border-color: rgba(255, 255, 255, 0.3);
+  background: transparent;
+}
+.site-header--dark .login-btn:hover {
+  border-color: var(--white);
+}
+.site-header--dark .icon-btn {
+  color: var(--white);
+  border-color: rgba(255, 255, 255, 0.3);
+  background: transparent;
+}
+@media (max-width: 959px) {
+  .site-header--dark .site-nav__list.is-open {
+    background: #0b0b0b;
+    border-bottom-color: #262626;
+  }
+}
+@media (max-width: 480px) {
+  .hero4__badge {
+    flex-wrap: nowrap;
+    white-space: nowrap;
+    font-size: var(--fs-xs);
+  }
+  .hero4__badge-tag {
+    padding: 3px 9px;
+  }
 }

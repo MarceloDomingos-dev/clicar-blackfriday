@@ -16,10 +16,19 @@ const NAV = [
 export function Header() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [dark, setDark] = useState(true);
   const toggleRef = useRef(null);
+  const headerRef = useRef(null);
 
+  // O cabeçalho fica escuro sobre as seções escuras (abertura, IA SDR, rodapé) e claro nas demais.
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
+    const onScroll = () => {
+      setScrolled(window.scrollY > 8);
+      const h = headerRef.current?.getBoundingClientRect().bottom ?? 0;
+      const below = document.elementFromPoint(window.innerWidth / 2, h + 2);
+      const section = below?.closest('main > section, main > div, footer');
+      setDark(Boolean(section?.matches('.on-dark, .hero4--bf, footer')));
+    };
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
@@ -38,10 +47,14 @@ export function Header() {
   }, [open]);
 
   return (
-    <header id="topo" className={`site-header${scrolled ? ' is-scrolled' : ''}`}>
+    <header
+      id="topo"
+      ref={headerRef}
+      className={`site-header${scrolled ? ' is-scrolled' : ''}${dark ? ' site-header--dark' : ''}`}
+    >
       <PromoBar />
       <div className="container site-header__inner">
-        <Logo />
+        <Logo variant={dark ? 'negativo' : 'positivo'} />
         <nav className="site-nav" aria-label="Principal">
           <ul id="menu-principal" className={`site-nav__list${open ? ' is-open' : ''}`}>
             {NAV.map((item) => (
