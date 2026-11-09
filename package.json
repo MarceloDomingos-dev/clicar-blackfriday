@@ -1,0 +1,40 @@
+{
+  "name": "clicar-blackfriday",
+  "version": "1.0.0",
+  "description": "Landing page da Black Friday do CliCar app: 50% off em todos os planos no plano anual.",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=18.18"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "check:plans": "node scripts/check-plans.mjs"
+  },
+  "dependencies": {
+    "@fontsource/inter": "5.1.1",
+    "@fontsource/sora": "5.1.1",
+    "gsap": "^3.13.0",
+    "lenis": "^1.1.13",
+    "lucide-react": "0.468.0",
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.2",
+    "@vitejs/plugin-react": "4.7.0",
+    "eslint": "^9.39.2",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-react": "^7.37.2",
+    "eslint-plugin-react-hooks": "^5.1.0",
+    "globals": "^15.14.0",
+    "prettier": "^3.4.2",
+    "vite": "6.4.5"
+  }
+}
