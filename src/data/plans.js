@@ -74,26 +74,7 @@ export const plans = [
       },
     ],
   },
-  {
-    id: 'plano-4',
-    level: 4,
-    name: 'Recepcionista Inteligente',
-    title: 'Recepcionista Inteligente',
-    price: 'R$ 990,00',
-    summary: 'Acrescenta a IA SDR no WhatsApp, que atende e agenda sozinha, e integrações avançadas.',
-    accent: 'var(--orange)',
-    highlights: [
-      { label: 'IA SDR no WhatsApp', text: 'atende e faz o agendamento 100% sem intervenção humana' },
-      { label: 'Agente configurável', text: 'apresentação, instruções e base de conhecimento' },
-      { label: 'Qualificação', text: 'qualificação de contatos e coleta de informações do cliente' },
-      { label: 'Regras', text: 'regras comerciais e de agendamento' },
-      { label: 'Integrações avançadas', text: 'configuração de tokens de API e webhooks' },
-    ],
-  },
 ];
-
-/** Nível do plano que introduz a IA SDR (usado em textos e selos). */
-export const SDR_LEVEL = 4;
 
 /**
  * Grupos da tabela comparativa. `icon` é o nome de um ícone do lucide-react
@@ -163,21 +144,6 @@ export const featureGroups = [
           { name: 'Conexão e gestão de dispositivos', from: 1 },
           { name: 'Visualização e atendimento de conversas', from: 1 },
           { name: 'Mensagens rápidas', from: 1 },
-        ],
-      },
-      {
-        id: 'ia-sdr',
-        label: 'IA SDR no WhatsApp',
-        note: 'Exclusiva do Recepcionista Inteligente',
-        tone: 'sdr',
-        features: [
-          { name: 'Agendamento 100% automático, sem intervenção humana', from: 4, highlight: true },
-          { name: 'Agente configurável: apresentação, instruções e base de conhecimento', from: 4 },
-          { name: 'Qualificação de contatos', from: 4 },
-          { name: 'Regras comerciais e de agendamento', from: 4 },
-          { name: 'Coleta de informações do cliente', from: 4 },
-          { name: 'Atendimento automatizado', from: 4 },
-          { name: 'Transferência ou aviso para atendentes humanos', from: 4 },
         ],
       },
     ],
@@ -287,20 +253,6 @@ export const featureGroups = [
         features: [
           { name: 'Portal de agendamento', from: 3 },
           { name: 'Configuração de e-mail', from: 3 },
-        ],
-      },
-    ],
-  },
-  {
-    id: 'integracoes',
-    label: 'Integrações',
-    icon: 'Webhook',
-    subgroups: [
-      {
-        label: 'Integrações avançadas',
-        features: [
-          { name: 'Configuração de tokens de API', from: 4 },
-          { name: 'Configuração de webhooks', from: 4 },
         ],
       },
     ],

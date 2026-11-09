@@ -73,9 +73,4 @@ export const profiles = [
     title: 'Busca gestão completa e automação',
     text: 'Fiscal e contábil, conciliações, DRE, compras e automações de relacionamento.',
   },
-  {
-    level: 4,
-    title: 'Quer automatizar o atendimento',
-    text: 'Tudo do Avançado, mais IA SDR no WhatsApp e integrações por API e webhooks.',
-  },
 ];

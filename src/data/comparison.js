@@ -1,7 +1,7 @@
 /**
  * Quadro comparativo enxuto: cada linha resume um conjunto de funcionalidades de src/data/plans.js.
  * `from` = primeiro plano em que a linha entra (herança: aparece em todos os planos acima).
- * A lista detalhada de cada recurso continua em plans.js (usada pelos cartões e pela seção da IA).
+ * A lista detalhada de cada recurso continua em plans.js (usada pelos cartões).
  */
 export const comparisonGroups = [
   {
@@ -29,10 +29,7 @@ export const comparisonGroups = [
     id: 'whatsapp',
     label: 'WhatsApp',
     icon: 'MessageCircle',
-    rows: [
-      { name: 'WhatsApp integrado (atendimento pela equipe)', from: 1 },
-      { name: 'IA SDR: atende e agenda sem intervenção humana', from: 4 },
-    ],
+    rows: [{ name: 'WhatsApp integrado (atendimento pela equipe)', from: 1 }],
   },
   {
     id: 'crm',
@@ -72,11 +69,5 @@ export const comparisonGroups = [
       { name: 'Relatórios avançados, permissões avançadas e histórico', from: 3 },
       { name: 'Portal de agendamento e configuração de e-mail', from: 3 },
     ],
-  },
-  {
-    id: 'integracoes',
-    label: 'Integrações',
-    icon: 'Webhook',
-    rows: [{ name: 'Tokens de API e webhooks', from: 4 }],
   },
 ];

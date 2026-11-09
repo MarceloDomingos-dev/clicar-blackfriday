@@ -1,6 +1,6 @@
 // Verifica a consistência dos dados dos planos: níveis, herança e nomes duplicados.
 // Uso: npm run check:plans
-import { plans, featureGroups, SDR_LEVEL } from '../src/data/plans.js';
+import { plans, featureGroups } from '../src/data/plans.js';
 import { comparisonGroups } from '../src/data/comparison.js';
 
 const errors = [];
@@ -27,11 +27,6 @@ for (let i = 1; i < plans.length; i++) {
   const cur = setFor(plans[i].level);
   for (const f of prev) if (!cur.has(f)) errors.push(`"${f.name}" some no ${plans[i].name}.`);
 }
-
-// IA SDR exclusiva do plano definido em SDR_LEVEL.
-const sdr = featureGroups.find((g) => g.id === 'whatsapp').subgroups.find((s) => s.id === 'ia-sdr');
-for (const f of sdr.features)
-  if (f.from !== SDR_LEVEL) errors.push(`IA SDR fora do Plano ${SDR_LEVEL}: "${f.name}".`);
 
 for (const g of comparisonGroups)
   for (const r of g.rows)

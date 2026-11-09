@@ -7,7 +7,7 @@ export function PromoTerms({ className = '' }) {
     {
       icon: Layers,
       title: 'Todos os planos',
-      text: `${PROMO.discountPercent}% off do Essencial ao Recepcionista Inteligente`,
+      text: `${PROMO.discountPercent}% off do Essencial ao Avançado`,
     },
     {
       icon: Repeat,

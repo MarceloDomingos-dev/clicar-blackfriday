@@ -3,7 +3,7 @@ import { Menu, X } from 'lucide-react';
 import positivo from '../../assets/brand/clicar-horizontal-positivo.svg';
 import negativo from '../../assets/brand/clicar-horizontal-negativo.svg';
 import { SITE } from '../../config/site.js';
-import { TrialButton } from '../ui/TrialButton.jsx';
+import { PromoButton } from '../promo/PromoButton.jsx';
 import { LoginButton } from '../ui/LoginButton.jsx';
 import { PromoBar } from '../promo/PromoBar.jsx';
 
@@ -22,7 +22,7 @@ export function Header() {
   const toggleRef = useRef(null);
   const headerRef = useRef(null);
 
-  // O cabeçalho fica escuro sobre as seções escuras (IA SDR, rodapé) e claro nas demais.
+  // O cabeçalho fica escuro sobre as seções escuras (rodapé) e claro nas demais.
   useEffect(() => {
     const onScroll = () => {
       setScrolled(window.scrollY > 8);
@@ -71,13 +71,13 @@ export function Header() {
               </li>
             ))}
             <li className="site-nav__cta-mobile">
-              <TrialButton block onClick={() => setOpen(false)} />
+              <PromoButton block onClick={() => setOpen(false)} />
             </li>
           </ul>
         </nav>
         <div className="site-header__actions">
           <LoginButton />
-          <TrialButton className="site-header__cta" />
+          <PromoButton className="site-header__cta" />
           <button
             ref={toggleRef}
             type="button"

@@ -63,41 +63,16 @@ export const LOGIN = {
 };
 
 /**
- * ⚠️ CONFIGURAÇÃO PENDENTE — botão "Teste 7 dias grátis"
- * --------------------------------------------------------
- * `url`: endereço da tela de cadastro do teste grátis.
- * Enquanto estiver vazio, o botão leva ao formulário no fim da página (#demonstracao).
- */
-export const SIGNUP = {
-  url: 'https://appclicar.com.br/cadastro',
-};
-
-/**
- * Google Ads: conversão disparada no clique dos botões de cadastro (mesma tag do site no ar).
- * A tag em si fica no index.html.
- */
-export const TRACKING = {
-  signupConversion: 'AW-18531398933/vx-nCKLR1rEdEJXquoRF',
-};
-
-/**
  * Assinatura do plano mensal (preço normal), mesmo destino do botão do plano no site no ar.
  */
 export const SUBSCRIBE = {
   url: 'https://appclicar.com.br/assinar',
-  slugs: { 'plano-1': 'essencial', 'plano-2': 'gestao', 'plano-3': 'avancado', 'plano-4': 'completo' },
+  slugs: { 'plano-1': 'essencial', 'plano-2': 'gestao', 'plano-3': 'avancado' },
 };
 
 export function getSubscribeLink(plan) {
   const slug = SUBSCRIBE.slugs[plan?.id];
-  return slug ? `${SUBSCRIBE.url}?plano=${slug}` : getSignupLink().href;
-}
-
-export function getSignupLink() {
-  const url = typeof SIGNUP.url === 'string' ? SIGNUP.url.trim() : '';
-  return url
-    ? { href: url, external: false, ready: true }
-    : { href: CONTACT_FALLBACK_HREF, external: false, ready: false };
+  return slug ? `${SUBSCRIBE.url}?plano=${slug}` : CONTACT_FALLBACK_HREF;
 }
 
 /** Oficinas que já usam o CliCar app (exibidas na faixa de clientes). */

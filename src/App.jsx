@@ -10,7 +10,6 @@ import { DifferentialsSection } from './components/sections/DifferentialsSection
 import { SegmentsSection } from './components/sections/SegmentsSection.jsx';
 import { TourSection } from './components/sections/TourSection.jsx';
 import { FeaturesSection } from './components/sections/FeaturesSection.jsx';
-import { SdrShowcase } from './components/sections/SdrShowcase.jsx';
 import { StartSection } from './components/sections/StartSection.jsx';
 import { PlansSection } from './components/sections/PlansSection.jsx';
 import { ComparisonSection } from './components/sections/ComparisonSection.jsx';
@@ -39,7 +38,6 @@ export default function App() {
         <SegmentsSection />
         <TourSection />
         <FeaturesSection />
-        <SdrShowcase />
         <StartSection />
         <ClientsStrip />
         <ComparisonSection />

@@ -8,7 +8,7 @@ import { PromoTerms } from '../promo/PromoTerms.jsx';
 
 const BILLING = [
   { id: 'anual', label: 'Anual', note: `${PROMO.discountPercent}% off` },
-  { id: 'mensal', label: 'Mensal', note: 'preço normal' },
+  { id: 'mensal', label: 'Mensal' },
 ];
 
 export function PlansSection() {
@@ -45,7 +45,7 @@ export function PlansSection() {
               onClick={() => setBilling(b.id)}
             >
               {b.label}
-              <span className="billing-toggle__note">{b.note}</span>
+              {b.note && <span className="billing-toggle__note">{b.note}</span>}
             </button>
           ))}
         </div>

@@ -11,7 +11,7 @@ import './styles/site.css';
 import './styles/promo.css';
 import App from './App.jsx';
 import { isContactConfigured } from './config/site.js';
-import { initTracking } from './lib/tracking.js';
+import { initPixel } from './lib/pixel.js';
 
 // Marca cedo que haverá animação, para os títulos não piscarem antes de animar.
 if (window.matchMedia?.('(prefers-reduced-motion: no-preference)').matches) {
@@ -25,7 +25,7 @@ if (import.meta.env.DEV && !isContactConfigured()) {
   );
 }
 
-initTracking();
+initPixel();
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>

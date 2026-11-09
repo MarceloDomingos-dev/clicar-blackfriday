@@ -1,4 +1,5 @@
-import { TrialButton } from '../ui/TrialButton.jsx';
+import { PROMO } from '../../config/promo.js';
+import { PromoButton } from '../promo/PromoButton.jsx';
 import { ApprovalVisual, BankVisual, ChecklistVisual } from '../illustrations/Mocks.jsx';
 import { Hl, SectionHeading } from '../ui/SectionHeading.jsx';
 import { Brand } from '../ui/Brand.jsx';
@@ -63,10 +64,12 @@ export function HowItWorks() {
         </ol>
         <div className="how-cta">
           <div className="how-cta__text">
-            <p className="how-cta__title">Quer ver na sua oficina?</p>
-            <p className="how-cta__sub">Conecte seu WhatsApp e teste por 7 dias sem custo</p>
+            <p className="how-cta__title">Quer isso na sua oficina?</p>
+            <p className="how-cta__sub">
+              {PROMO.discountPercent}% off no {PROMO.billing}, até {PROMO.endsLabel}
+            </p>
           </div>
-          <TrialButton className="how-cta__btn">Comece agora mesmo</TrialButton>
+          <PromoButton className="how-cta__btn">Quero meu desconto</PromoButton>
         </div>
       </div>
     </section>

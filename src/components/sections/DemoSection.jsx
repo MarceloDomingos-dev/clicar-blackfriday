@@ -12,7 +12,7 @@ const POINTS = [
   'Qual plano faz sentido para a sua operação hoje',
 ];
 
-const EMPTY = { nome: '', empresa: '', email: '', whatsapp: '', plano: '', teste: false };
+const EMPTY = { nome: '', empresa: '', email: '', whatsapp: '', plano: '' };
 
 function validate(v) {
   const e = {};
@@ -28,9 +28,7 @@ function validate(v) {
 function buildMessage(v) {
   const plan = plans.find((p) => p.id === v.plano);
   return [
-    v.teste
-      ? `Olá! Quero começar o teste grátis de 7 dias do ${SITE.productName}.`
-      : `Olá! Quero agendar uma demonstração do ${SITE.productName}.`,
+    `Olá! Quero agendar uma demonstração do ${SITE.productName}.`,
     `Nome: ${v.nome}`,
     `Empresa: ${v.empresa}`,
     `E-mail: ${v.email}`,
@@ -68,11 +66,10 @@ export function DemoSection() {
   // Botões "Quero este plano" (data-plan) já deixam o plano escolhido no formulário.
   useEffect(() => {
     const onClick = (e) => {
-      const link = e.target.closest?.('a[data-plan], a[data-trial]');
+      const link = e.target.closest?.('a[data-plan]');
       if (!link) return;
       const id = link.dataset.plan;
       if (id && plans.some((p) => p.id === id)) setValues((v) => ({ ...v, plano: id }));
-      if (link.dataset.trial) setValues((v) => ({ ...v, teste: true }));
     };
     document.addEventListener('click', onClick);
     return () => document.removeEventListener('click', onClick);

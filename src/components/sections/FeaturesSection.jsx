@@ -33,8 +33,8 @@ export function FeaturesSection() {
               <p className="feature-card__text">{f.text}</p>
               <div className="feature-card__foot">
                 <span className={`tag${f.from === 1 ? ' tag--all' : ''}`}>{availability(f.from)}</span>
-                <a className="feature-card__link" href={f.from === 4 ? '#ia-sdr' : '#comparar'}>
-                  {f.from === 4 ? 'Ver como funciona' : 'Ver no comparativo'}
+                <a className="feature-card__link" href="#comparar">
+                  Ver no comparativo
                   <span className="sr-only">: {f.title}</span>
                   <ArrowRight size={16} aria-hidden="true" />
                 </a>

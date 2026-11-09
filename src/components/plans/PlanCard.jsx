@@ -1,5 +1,4 @@
-import { Bot, Building, Building2, Check, Landmark, MessageCircle, Star, Store } from 'lucide-react';
-import { SDR_LEVEL } from '../../data/plans.js';
+import { Building, Building2, Check, MessageCircle, Star, Store } from 'lucide-react';
 import { previousPlan } from '../../lib/plans.js';
 import { PROMO, promoPrice } from '../../config/promo.js';
 import { PromoButton } from '../promo/PromoButton.jsx';
@@ -7,13 +6,12 @@ import { Button } from '../ui/Button.jsx';
 import { getSubscribeLink } from '../../config/site.js';
 
 /** Ícone de cada plano, do menor para o maior (igual ao site no ar). */
-const PLAN_ICONS = { 1: Store, 2: Building, 3: Building2, 4: Landmark };
+const PLAN_ICONS = { 1: Store, 2: Building, 3: Building2 };
 
 /** `billing`: 'anual' (Black Friday, 50% off) ou 'mensal' (preço normal). */
 export function PlanCard({ plan, billing = 'anual' }) {
   const annual = billing === 'anual';
   const prev = previousPlan(plan);
-  const hasSdr = plan.level >= SDR_LEVEL;
   const titleId = `${plan.id}-titulo`;
   const Icon = PLAN_ICONS[plan.level] ?? Store;
   const promo = promoPrice(plan.price);
@@ -46,13 +44,6 @@ export function PlanCard({ plan, billing = 'anual' }) {
         <span className="chip">
           <MessageCircle size={14} aria-hidden="true" /> WhatsApp integrado
         </span>
-        {hasSdr ? (
-          <span className="chip chip--sdr">
-            <Bot size={14} aria-hidden="true" /> IA SDR
-          </span>
-        ) : (
-          <span className="chip chip--muted">Sem IA SDR</span>
-        )}
       </div>
 
       <div className="plan-card__body">
