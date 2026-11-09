@@ -89,53 +89,28 @@
   font-weight: 700;
 }
 
-/* Abertura (cartão branco do site, com a Black Friday) */
-.hero4--bf .hero4__card {
-  height: auto;
-  min-height: calc(100svh - var(--header-h) - 40px);
-}
-.hero4__badge {
-  display: inline-flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: 8px 10px;
-  padding: 6px 14px 6px 6px;
-  border-radius: var(--radius-pill);
-  background: var(--black);
+/* Abertura em preto */
+.hero2--bf {
   color: var(--white);
-  font-size: var(--fs-sm);
-  font-weight: 500;
 }
-.hero4__badge > span:last-child {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-}
-.hero4__badge svg {
-  color: var(--orange);
-}
-.hero4__badge-tag {
-  padding: 4px 12px;
-  border-radius: var(--radius-pill);
-  background: var(--orange);
+.hero2--bf .hero2__line1 {
   color: var(--white);
-  font-family: var(--font-display);
-  font-size: var(--fs-xs);
-  font-weight: 700;
-  letter-spacing: var(--tracking-label);
-  text-transform: uppercase;
 }
-.hero4--bf .hero4__lead strong {
-  color: var(--black);
+.hero2--bf .hero2__line2 {
+  color: var(--white);
 }
-.hero4__countdown {
-  margin-top: clamp(18px, 2.2vw, 26px);
-  padding: 14px 16px 16px;
-  border-radius: var(--radius-lg);
-  background: var(--black);
+.hero2--bf .hero2__badge {
+  color: var(--white);
+  border-color: var(--orange-line);
+  background: rgba(245, 90, 0, 0.12);
 }
-.hero4__countdown-label,
+.hero2--bf .hero2__lead strong {
+  color: var(--white);
+}
+.hero2__countdown {
+  margin-top: 28px;
+}
+.hero2__countdown-label,
 .plans__bf-label {
   display: block;
   margin-bottom: 10px;
@@ -145,19 +120,11 @@
   text-transform: uppercase;
   color: #ff7a26;
 }
-.hero4--bf .hero4__actions {
+.hero2--bf .hero2__actions {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 12px;
-}
-@media (max-width: 480px) {
-  .hero4__countdown .bf-countdown {
-    gap: 6px;
-  }
-  .hero4__countdown .bf-countdown__unit {
-    min-width: 58px;
-  }
 }
 
 /* Regras da promoção */
@@ -202,6 +169,20 @@
   margin-top: 2px;
   color: var(--orange);
 }
+.hero2__terms {
+  margin-top: 28px;
+}
+.hero2__terms .bf-terms__item {
+  border-color: var(--glass-line);
+  background: var(--glass);
+}
+.hero2__terms .bf-terms__item > span {
+  color: var(--dark-muted);
+}
+.hero2__terms .bf-terms__item strong {
+  color: var(--white);
+}
+
 /* Planos */
 .plans__bf {
   display: flex;
@@ -302,4 +283,7 @@
 .bf-bar,
 .bf-bar * {
   text-decoration: none;
+}
+.hero2--bf .brand-word__cli {
+  color: var(--white);
 }
