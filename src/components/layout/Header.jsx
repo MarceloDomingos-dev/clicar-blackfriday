@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { Menu, X } from 'lucide-react';
-import { Logo } from '../ui/Logo.jsx';
+import positivo from '../../assets/brand/clicar-horizontal-positivo.svg';
+import negativo from '../../assets/brand/clicar-horizontal-negativo.svg';
+import { SITE } from '../../config/site.js';
 import { TrialButton } from '../ui/TrialButton.jsx';
 import { LoginButton } from '../ui/LoginButton.jsx';
 import { PromoBar } from '../promo/PromoBar.jsx';
@@ -54,7 +56,11 @@ export function Header() {
     >
       <PromoBar />
       <div className="container site-header__inner">
-        <Logo variant={dark ? 'negativo' : 'positivo'} />
+        {/* As duas versões do logo ficam sobrepostas e trocam com um esmaecimento suave. */}
+        <a className="logo logo--swap" href="#topo" aria-label={`${SITE.productName} — início`}>
+          <img className="logo__pos" src={positivo} alt="" width="148" height="32" />
+          <img className="logo__neg" src={negativo} alt="" width="148" height="32" />
+        </a>
         <nav className="site-nav" aria-label="Principal">
           <ul id="menu-principal" className={`site-nav__list${open ? ' is-open' : ''}`}>
             {NAV.map((item) => (
