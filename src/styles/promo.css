@@ -287,3 +287,60 @@
 .hero2--bf .brand-word__cli {
   color: var(--white);
 }
+
+/* Chave Anual / Mensal dos planos */
+.billing-toggle {
+  display: flex;
+  width: fit-content;
+  margin: 0 auto 40px;
+  padding: 5px;
+  gap: 4px;
+  border-radius: var(--radius-pill);
+  background: var(--white);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-sm);
+}
+.billing-toggle__opt {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 20px;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--black);
+  font-family: var(--font-display);
+  font-size: var(--fs-md);
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+.billing-toggle__opt:hover {
+  background: var(--gray-bg);
+}
+.billing-toggle__opt.is-active {
+  background: var(--black);
+  color: var(--white);
+}
+.billing-toggle__note {
+  padding: 2px 8px;
+  border-radius: var(--radius-pill);
+  background: var(--gray-bg);
+  color: var(--gray-text);
+  font-family: var(--font-sans);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+}
+.billing-toggle__opt.is-active .billing-toggle__note {
+  background: var(--orange);
+  color: var(--white);
+}
+.plan-card__price--full,
+.plan-card--featured .plan-card__price--full {
+  color: inherit;
+}
+.plan-card__promo {
+  align-items: center;
+  text-align: center;
+}

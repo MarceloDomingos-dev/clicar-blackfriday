@@ -3,11 +3,15 @@ import { SDR_LEVEL } from '../../data/plans.js';
 import { previousPlan } from '../../lib/plans.js';
 import { PROMO, promoPrice } from '../../config/promo.js';
 import { PromoButton } from '../promo/PromoButton.jsx';
+import { Button } from '../ui/Button.jsx';
+import { getSubscribeLink } from '../../config/site.js';
 
 /** Ícone de cada plano, do menor para o maior (igual ao site no ar). */
 const PLAN_ICONS = { 1: Store, 2: Building, 3: Building2, 4: Landmark };
 
-export function PlanCard({ plan }) {
+/** `billing`: 'anual' (Black Friday, 50% off) ou 'mensal' (preço normal). */
+export function PlanCard({ plan, billing = 'anual' }) {
+  const annual = billing === 'anual';
   const prev = previousPlan(plan);
   const hasSdr = plan.level >= SDR_LEVEL;
   const titleId = `${plan.id}-titulo`;
@@ -20,9 +24,11 @@ export function PlanCard({ plan }) {
       className={`plan-card${plan.featured ? ' plan-card--featured on-dark' : ''}`}
       aria-labelledby={titleId}
     >
-      <p className={`plan-card__badge${plan.badge ? '' : ' plan-card__badge--bf'}`}>
-        <Star size={13} fill="currentColor" aria-hidden="true" /> {plan.badge ?? PROMO.name}
-      </p>
+      {(plan.badge || annual) && (
+        <p className={`plan-card__badge${plan.badge ? '' : ' plan-card__badge--bf'}`}>
+          <Star size={13} fill="currentColor" aria-hidden="true" /> {plan.badge ?? PROMO.name}
+        </p>
+      )}
 
       <header className="plan-card__head">
         <div className="plan-card__top">
@@ -75,24 +81,47 @@ export function PlanCard({ plan }) {
       </div>
 
       <footer className="plan-card__foot">
-        <div className="plan-card__promo">
-          <p className="plan-card__was">
-            <span className="sr-only">Preço normal: </span>
-            <s>{plan.price}</s>
-            <span className="plan-card__off">−{PROMO.discountPercent}%</span>
-          </p>
-          <p className="plan-card__price">
-            <span className="sr-only">Preço na Black Friday, no plano anual: </span>
-            <span data-count>{promo.label}</span>
-            <span className="plan-card__per">/mês</span>
-          </p>
-          <p className="plan-card__annual">
-            no {PROMO.billing} · <strong>{promo.yearLabel}</strong> no ano
-          </p>
-        </div>
-        <PromoButton plan={plan} size="lg" block variant={plan.featured ? 'primary' : 'dark'}>
-          Garantir {PROMO.discountPercent}% off<span className="sr-only"> no {plan.name}</span>
-        </PromoButton>
+        {annual ? (
+          <>
+            <div className="plan-card__promo">
+              <p className="plan-card__was">
+                <span className="sr-only">Preço normal: </span>
+                <s>{plan.price}</s>
+                <span className="plan-card__off">−{PROMO.discountPercent}%</span>
+              </p>
+              <p className="plan-card__price">
+                <span className="sr-only">Preço na Black Friday, no plano anual: </span>
+                <span>{promo.label}</span>
+                <span className="plan-card__per">/mês</span>
+              </p>
+              <p className="plan-card__annual">
+                no {PROMO.billing} · <strong>{promo.yearLabel}</strong> no ano
+              </p>
+            </div>
+            <PromoButton plan={plan} size="lg" block variant={plan.featured ? 'primary' : 'dark'}>
+              Garantir {PROMO.discountPercent}% off<span className="sr-only"> no {plan.name}</span>
+            </PromoButton>
+          </>
+        ) : (
+          <>
+            <div className="plan-card__promo">
+              <p className="plan-card__price plan-card__price--full">
+                <span className="sr-only">Preço no plano mensal: </span>
+                <span>{plan.price}</span>
+                <span className="plan-card__per">/mês</span>
+              </p>
+              <p className="plan-card__annual">no plano mensal</p>
+            </div>
+            <Button
+              href={getSubscribeLink(plan)}
+              size="lg"
+              block
+              variant={plan.featured ? 'primary' : 'dark'}
+            >
+              Quero este plano<span className="sr-only">: {plan.name}</span>
+            </Button>
+          </>
+        )}
         <a className="plan-card__more" href="#comparar">
           Ver todos os recursos
         </a>

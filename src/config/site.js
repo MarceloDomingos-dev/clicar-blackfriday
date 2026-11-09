@@ -80,6 +80,19 @@ export const TRACKING = {
   signupConversion: 'AW-18531398933/vx-nCKLR1rEdEJXquoRF',
 };
 
+/**
+ * Assinatura do plano mensal (preço normal), mesmo destino do botão do plano no site no ar.
+ */
+export const SUBSCRIBE = {
+  url: 'https://appclicar.com.br/assinar',
+  slugs: { 'plano-1': 'essencial', 'plano-2': 'gestao', 'plano-3': 'avancado', 'plano-4': 'completo' },
+};
+
+export function getSubscribeLink(plan) {
+  const slug = SUBSCRIBE.slugs[plan?.id];
+  return slug ? `${SUBSCRIBE.url}?plano=${slug}` : getSignupLink().href;
+}
+
 export function getSignupLink() {
   const url = typeof SIGNUP.url === 'string' ? SIGNUP.url.trim() : '';
   return url
