@@ -37,7 +37,6 @@ export function DifferentialsSection() {
         <SectionHeading
           id="diferenciais-title"
           layout="split"
-          eyebrow="Diferenciais"
           title={
             <>
               Nossos diferenciais. <Hl>Um clique cada.</Hl>

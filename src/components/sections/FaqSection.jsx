@@ -15,7 +15,6 @@ export function FaqSection() {
         <div className="faq-layout__side">
           <SectionHeading
             id="duvidas-title"
-            eyebrow="Dúvidas"
             title={
               <>
                 Perguntas <Hl>frequentes.</Hl>

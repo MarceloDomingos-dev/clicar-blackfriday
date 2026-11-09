@@ -1,8 +1,10 @@
 import { CLIENTS } from '../../config/site.js';
-import symbol from '../../assets/brand/clicar-simbolo-positivo.svg';
 import { Brand } from '../ui/Brand.jsx';
 
-/** Faixa com as oficinas que já usam o CliCar app. */
+/** Lista repetida para a faixa rolar sem emendas visíveis. */
+const LOOP = [...CLIENTS, ...CLIENTS, ...CLIENTS];
+
+/** Faixa com as oficinas que já usam o CliCar app, rolando sem parar. */
 export function ClientsStrip() {
   return (
     <section className="clients on-light" aria-labelledby="clientes-title">
@@ -10,15 +12,26 @@ export function ClientsStrip() {
         <h2 id="clientes-title" className="clients__title label">
           Oficinas que já usam o <Brand /> app
         </h2>
-        <ul className="clients__list" data-reveal="stagger">
-          {CLIENTS.map((name) => (
-            <li key={name} className="clients__item">
-              <img src={symbol} alt="" width="18" height="20" aria-hidden="true" />
-              <span>{name}</span>
+      </div>
+      <div className="clients__marquee" aria-hidden="true">
+        <ul className="clients__track">
+          {LOOP.map((name, i) => (
+            <li key={`a-${i}`} className="clients__item">
+              {name}
+            </li>
+          ))}
+          {LOOP.map((name, i) => (
+            <li key={`b-${i}`} className="clients__item">
+              {name}
             </li>
           ))}
         </ul>
       </div>
+      <ul className="sr-only">
+        {CLIENTS.map((name) => (
+          <li key={name}>{name}</li>
+        ))}
+      </ul>
     </section>
   );
 }

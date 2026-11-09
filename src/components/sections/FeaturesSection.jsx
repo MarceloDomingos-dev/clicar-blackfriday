@@ -2,8 +2,9 @@ import { ArrowRight } from 'lucide-react';
 import { features } from '../../data/info.js';
 import { GroupIcon } from '../plans/GroupIcon.jsx';
 import { Hl, SectionHeading } from '../ui/SectionHeading.jsx';
+import { planByLevel } from '../../lib/plans.js';
 
-const availability = (from) => (from === 1 ? 'Em todos os planos' : `A partir do Plano ${from}`);
+const availability = (from) => (from === 1 ? 'Em todos os planos' : `A partir do ${planByLevel(from).name}`);
 
 /** Recursos do sistema, antes dos planos. */
 export function FeaturesSection() {
@@ -13,7 +14,6 @@ export function FeaturesSection() {
         <SectionHeading
           id="recursos-title"
           layout="split"
-          eyebrow="Recursos"
           title={
             <>
               Da entrada do carro ao <Hl>dinheiro no caixa.</Hl>
@@ -21,7 +21,7 @@ export function FeaturesSection() {
           }
           description="Atendimento, vendas, estoque, financeiro e fiscal conectados. Cada parte da rotina a um clique de distância."
         />
-        <ul className="features-grid" data-reveal="stagger">
+        <ul className="features-grid" data-reveal>
           {features.map((f) => (
             <li key={f.title} className="feature-card">
               <div className="feature-card__top">

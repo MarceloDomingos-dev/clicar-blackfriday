@@ -32,6 +32,8 @@ export default function App() {
         <Hero />
         <Marquee />
         <Manifesto />
+        {/* Black Friday: planos logo depois do manifesto (pedido do Marcelo em 09/11/2026). */}
+        <PlansSection />
         <HowItWorks />
         <DifferentialsSection />
         <SegmentsSection />
@@ -40,7 +42,6 @@ export default function App() {
         <SdrShowcase />
         <StartSection />
         <ClientsStrip />
-        <PlansSection />
         <ComparisonSection />
         <VersusSection />
         <FaqSection />

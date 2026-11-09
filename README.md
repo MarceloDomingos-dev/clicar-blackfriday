@@ -92,10 +92,8 @@ clicar-app-site/
 │   │   ├── ia/                 # Imagens da seção de IA
 │   │   └── prints/             # Telas do sistema em WebP (800, 1400 e 2400 px)
 │   └── styles/
-│       ├── tokens.css          # Cores, fontes, espaçamentos e raios
-│       ├── base.css            # Estilos globais e acessibilidade
-│       ├── components.css      # Componentes
-│       └── layout.css          # Seções e responsividade
+│       ├── site.css            # Estilos do site no ar (appclicar.com.br/lp/, 09/11/2026)
+│       └── promo.css           # Black Friday: faixa, contagem, preços
 ├── eslint.config.js
 ├── .prettierrc.json
 ├── .editorconfig
@@ -172,3 +170,13 @@ O build usa caminhos relativos (`base: './'`), então funciona em qualquer pasta
 ---
 
 © CliCar app. Todos os direitos reservados.
+
+## Base no site no ar (09/11/2026)
+
+O código-fonte mais recente do site não estava disponível, então esta versão foi
+reconstruída a partir do build publicado em appclicar.com.br/lp/: abertura em cartão
+branco com cartões flutuantes, IA SDR com celular e números ao redor, cartões de planos
+com ícone e preço no rodapé, faixa de clientes rolando, textos mais curtos nos recursos
+e os estilos (src/styles/site.css). Botões "Entrar" e "Teste 7 dias grátis" levam ao
+sistema em appclicar.com.br, com a mesma tag de conversão do Google Ads.
+Na Black Friday, os planos aparecem logo depois do manifesto.

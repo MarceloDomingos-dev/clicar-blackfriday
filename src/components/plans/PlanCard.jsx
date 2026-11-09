@@ -1,14 +1,17 @@
-import { Bot, Check, CornerDownRight, MessageCircle, Star } from 'lucide-react';
+import { Bot, Building, Building2, Check, Landmark, MessageCircle, Star, Store } from 'lucide-react';
 import { SDR_LEVEL } from '../../data/plans.js';
 import { previousPlan } from '../../lib/plans.js';
 import { PROMO, promoPrice } from '../../config/promo.js';
 import { PromoButton } from '../promo/PromoButton.jsx';
-import { LevelMeter } from './LevelMeter.jsx';
+
+/** Ícone de cada plano, do menor para o maior (igual ao site no ar). */
+const PLAN_ICONS = { 1: Store, 2: Building, 3: Building2, 4: Landmark };
 
 export function PlanCard({ plan }) {
   const prev = previousPlan(plan);
   const hasSdr = plan.level >= SDR_LEVEL;
   const titleId = `${plan.id}-titulo`;
+  const Icon = PLAN_ICONS[plan.level] ?? Store;
   const promo = promoPrice(plan.price);
 
   return (
@@ -23,25 +26,12 @@ export function PlanCard({ plan }) {
 
       <header className="plan-card__head">
         <div className="plan-card__top">
+          <span className="plan-card__icon" aria-hidden="true">
+            <Icon size={26} strokeWidth={2.25} />
+          </span>
           <h3 id={titleId} className="plan-card__name">
-            <span className="label">{plan.name}</span>
             <span className="plan-card__title">{plan.title}</span>
           </h3>
-          <LevelMeter level={plan.level} />
-        </div>
-        <div className="plan-card__promo">
-          <p className="plan-card__was">
-            <span className="sr-only">Preço normal: </span>
-            <s>{plan.price}</s>
-            <span className="plan-card__off">−{PROMO.discountPercent}%</span>
-          </p>
-          <p className="plan-card__price">
-            <span className="sr-only">Preço na Black Friday, no plano anual: </span>
-            <span data-count>{promo.label}</span>
-          </p>
-          <p className="plan-card__annual">
-            no {PROMO.billing} · <strong>{promo.yearLabel}</strong> no ano
-          </p>
         </div>
         <p className="plan-card__summary">{plan.summary}</p>
       </header>
@@ -52,7 +42,7 @@ export function PlanCard({ plan }) {
         </span>
         {hasSdr ? (
           <span className="chip chip--sdr">
-            <Bot size={14} aria-hidden="true" /> IA SDR no WhatsApp
+            <Bot size={14} aria-hidden="true" /> IA SDR
           </span>
         ) : (
           <span className="chip chip--muted">Sem IA SDR</span>
@@ -60,20 +50,22 @@ export function PlanCard({ plan }) {
       </div>
 
       <div className="plan-card__body">
-        {prev ? (
-          <p className="plan-card__inherit">
-            <CornerDownRight size={16} aria-hidden="true" />
-            <span>
-              Inclui <strong>tudo do {prev.name}</strong>, mais:
-            </span>
-          </p>
-        ) : (
-          <p className="plan-card__inherit label">Inclui</p>
-        )}
         <ul className="plan-card__list">
+          {prev && (
+            <li>
+              <span className="plan-card__check" aria-hidden="true">
+                <Check size={12} strokeWidth={3.5} />
+              </span>
+              <span>
+                <strong>Tudo do {prev.name}</strong>
+              </span>
+            </li>
+          )}
           {plan.highlights.map((h) => (
             <li key={h.label}>
-              <Check size={16} strokeWidth={3} className="plan-card__check" aria-hidden="true" />
+              <span className="plan-card__check" aria-hidden="true">
+                <Check size={12} strokeWidth={3.5} />
+              </span>
               <span>
                 <strong>{h.label}:</strong> {h.text}
               </span>
@@ -83,6 +75,21 @@ export function PlanCard({ plan }) {
       </div>
 
       <footer className="plan-card__foot">
+        <div className="plan-card__promo">
+          <p className="plan-card__was">
+            <span className="sr-only">Preço normal: </span>
+            <s>{plan.price}</s>
+            <span className="plan-card__off">−{PROMO.discountPercent}%</span>
+          </p>
+          <p className="plan-card__price">
+            <span className="sr-only">Preço na Black Friday, no plano anual: </span>
+            <span data-count>{promo.label}</span>
+            <span className="plan-card__per">/mês</span>
+          </p>
+          <p className="plan-card__annual">
+            no {PROMO.billing} · <strong>{promo.yearLabel}</strong> no ano
+          </p>
+        </div>
         <PromoButton plan={plan} size="lg" block variant={plan.featured ? 'primary' : 'dark'}>
           Garantir {PROMO.discountPercent}% off<span className="sr-only"> no {plan.name}</span>
         </PromoButton>
